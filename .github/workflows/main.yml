@@ -36,7 +36,7 @@ jobs:
         run: HEROKU_API_KEY=${{secrets.HEROKU_SECRET_KEY}} heroku run ls -a ${{ env.HEROKU_APP_NAME }}
         
       - name: Heroku build
-        run: HEROKU_API_KEY=${{secrets.HEROKU_SECRET_KEY}} :push web -a ${{ env.HEROKU_APP_NAME }}
+        run: HEROKU_API_KEY=${{secrets.HEROKU_SECRET_KEY}} heroku container:push web -a ${{ env.HEROKU_APP_NAME }}
         
       - name: LS
         run: ls        
