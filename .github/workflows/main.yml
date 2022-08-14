@@ -31,7 +31,9 @@ jobs:
         
       - name: Heroku BUILD
         run: docker build -t registry.heroku.com/${{ env.HEROKU_APP_NAME }}/web .
-        #run: HEROKU_API_KEY=${{secrets.HEROKU_SECRET_KEY}} heroku container:release web -a ${{ env.HEROKU_APP_NAME }   
+        
+      - name: Heroku CLEAR
+        run: docker --rm -t registry.heroku.com/${{ env.HEROKU_APP_NAME }}/web .
         
       - name: Heroku RELEASE
         run: docker push registry.heroku.com/${{ env.HEROKU_APP_NAME }}/web
