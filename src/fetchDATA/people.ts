@@ -11,6 +11,9 @@ import * as fetchTOOL from './tool'
 export async function peopleAmount ( setUseStateFunction: any = null ) {
   async function fetchPeopleAmount() {
     const fetchURL = `${API_SERVER}/people/getCount`
+    console.log('-----------------')
+    console.log(API_SERVER)
+    console.log('-----------------')
     return fetch(fetchURL)
   }
 

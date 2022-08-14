@@ -58,6 +58,8 @@ export default function LoginForm() {
 
   const onSubmit = async (data: FormValuesProps) => {
     console.log('-----test------')
+    console.log(process.env.HOST_API)
+    console.log('-----------')
     try {
       await login(data.email, data.password);
     } catch (error) {

@@ -86,6 +86,12 @@ export async function companyProfile( setUseStateFunction: any = null, uuid: str
 
 export async function companiesAmount ( setUseStateFunction: any = null ) {
   async function fetchCompaniesAmount() {
+    console.log('-----------------')
+    console.log('TTTT:', process.env.TTTT)
+    console.log('HOST:', process.env.HOST)
+    console.log('PORT:', process.env.PORT)
+    console.log('HOST_API:', process.env.HOST_API)
+    console.log('-----------------')
     return fetch(fetchURL)
   }
 

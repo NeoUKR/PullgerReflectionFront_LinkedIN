@@ -15,6 +15,7 @@ module.exports = withTM({
   trailingSlash: true,
   env: {
     HOST_API: process.env.HOST_API,
+    TTTT: process.env.TTTT,
   }  
   // env: {
   //   // HOST
