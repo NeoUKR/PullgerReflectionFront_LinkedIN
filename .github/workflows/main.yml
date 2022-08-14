@@ -2,9 +2,8 @@
 
 name: CI-CD-Heroku
 
-#env:
-#  HEROKU_APP  :
-#  HEROKU_LOGIN
+env:
+   HEROKU_APP_NAME  : "lcompanies"
 
 # Controls when the workflow will run
 on:
@@ -33,8 +32,11 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
 
-      - name: Heroku autentification
-        run: HEROKU_API_KEY=${{secrets.HEROKU_SECRET_KEY}} heroku run ls -a lcompanies
+      - name: Heroku autentification test
+        run: HEROKU_API_KEY=${{secrets.HEROKU_SECRET_KEY}} heroku run ls -a ${{ env.HEROKU_APP_NAME }}
+        
+      - name: Heroku build
+        run: HEROKU_API_KEY=${{secrets.HEROKU_SECRET_KEY}} :push web -a ${{ env.HEROKU_APP_NAME }}
         
       - name: LS
         run: ls        
