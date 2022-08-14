@@ -33,7 +33,7 @@ jobs:
         run: docker build -t registry.heroku.com/${{ env.HEROKU_APP_NAME }}/web .
         
       - name: Heroku CLEAR
-        run: docker --rm -t registry.heroku.com/${{ env.HEROKU_APP_NAME }}/web .
+        run: docker rm registry.heroku.com/${{ env.HEROKU_APP_NAME }}/web
         
       - name: Heroku RELEASE
         run: docker push registry.heroku.com/${{ env.HEROKU_APP_NAME }}/web
