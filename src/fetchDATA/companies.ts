@@ -1,15 +1,13 @@
 import _mock from '@/_mock';
 import { randomNumberRange, randomInArray } from '@/_mock/funcs';
 
-import { HOST_API } from '@/config'
 import axios from '@/utils/axios';
-import { API_SERVER } from '@/config'
+import { PORT, HOST_API, API_SERVER } from '@/config'
 import * as fetchTOOL from './tool'
 
 import useLocales from '@/hooks/useLocales';
 // ----------------------------------------------------------------------
 const fetchURL_companyProfile = `${API_SERVER}/companies/profile/`
-const fetchURL_companiesList = `${API_SERVER}/ping`
 const fetchURL = `${API_SERVER}/companies/getCount`
 
 export function companiesGetStatusShow(inStatusReal:boolean) {
@@ -24,6 +22,7 @@ export function companiesGetStatusShow(inStatusReal:boolean) {
 }  
 
 export async function companiesList( setUseStateFunction: any = null ) {
+  const fetchURL_companiesList:string = `${API_SERVER}/ping`
 
   async function fetchCompaniesList() {
     return fetch(fetchURL_companiesList)

@@ -200,7 +200,6 @@ export default function UserList() {
     (!dataFiltered.length && !!filterStatus);
 
   useEffect(() => {
-    const fetchURL = `${API_SERVER}/ping`
     companiesList(setTableData)
   }, [])
   
@@ -275,7 +274,7 @@ export default function UserList() {
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
-                  rowCount={tableData.length}
+                  rowCount={tableData != null ? tableData.length : 0}
                   numSelected={selected.length}
                   onSort={onSort}
                   onSelectAllRows={(checked) =>
@@ -304,7 +303,7 @@ export default function UserList() {
                     />
                   ))}
 
-                  <TableEmptyRows height={denseHeight} emptyRows={emptyRows(page, rowsPerPage, tableData.length)} />
+                  <TableEmptyRows height={denseHeight} emptyRows={emptyRows(page, rowsPerPage, tableData != null ? tableData.length : 0)} />
 
                   <TableNoData isNotFound={isNotFound} />
                 </TableBody>
@@ -350,30 +349,34 @@ function applySortFilter({
   filterStatus: string;
   filterRole: string;
 }) {
-  const stabilizedThis = tableData.map((el, index) => [el, index] as const);
+  if (tableData != null) {
+    const stabilizedThis = tableData.map((el, index) => [el, index] as const);
 
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) return order;
-    return a[1] - b[1];
-  });
+    stabilizedThis.sort((a, b) => {
+      const order = comparator(a[0], b[0]);
+      if (order !== 0) return order;
+      return a[1] - b[1];
+    });
 
-  tableData = stabilizedThis.map((el) => el[0]);
+    tableData = stabilizedThis.map((el) => el[0]);
 
-  if (filterName) {
-    tableData = tableData.filter(
-      (item: Record<string, any>) =>
-        item.name.toLowerCase().indexOf(filterName.toLowerCase()) !== -1
-    );
+    if (filterName) {
+      tableData = tableData.filter(
+        (item: Record<string, any>) =>
+          item.name.toLowerCase().indexOf(filterName.toLowerCase()) !== -1
+      );
+    }
+
+    if (filterStatus !== 'all') {
+      tableData = tableData.filter((item: Record<string, any>) => item.status === filterStatus);
+    }
+
+    if (filterRole !== 'all') {
+      tableData = tableData.filter((item: Record<string, any>) => item.role === filterRole);
+    }
+
+    return tableData;
+  } else {
+    return []
   }
-
-  if (filterStatus !== 'all') {
-    tableData = tableData.filter((item: Record<string, any>) => item.status === filterStatus);
-  }
-
-  if (filterRole !== 'all') {
-    tableData = tableData.filter((item: Record<string, any>) => item.role === filterRole);
-  }
-
-  return tableData;
 }

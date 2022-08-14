@@ -13,4 +13,29 @@ module.exports = withTM({
   output: 'standalone',
   swcMinify: false,
   trailingSlash: true,
+  env: {
+    TTTT: process.env.TTTT,
+    PORT: process.env.PORT,
+    HOST: process.env.HOST,
+  }  
+  // env: {
+  //   // HOST
+  //   PORT: '8081',
+  //   // MAPBOX
+  //   HOST: 'localhost',
+  //   // FIREBASE
+  //   // FIREBASE_API_KEY: '',
+  //   // FIREBASE_AUTH_DOMAIN: '',
+  //   // FIREBASE_PROJECT_ID: '',
+  //   // FIREBASE_STORAGE_BUCKET: '',
+  //   // FIREBASE_MESSAGING_SENDER_ID: '',
+  //   // FIREBASE_APPID: '',
+  //   // FIREBASE_MEASUREMENT_ID: '',
+  //   // AWS COGNITO
+  //   // AWS_COGNITO_USER_POOL_ID: '',
+  //   // AWS_COGNITO_CLIENT_ID: '',
+  //   // AUTH0
+  //   // AUTH0_CLIENT_ID: '',
+  //   // AUTH0_DOMAIN: '',
+  // },   
 });
