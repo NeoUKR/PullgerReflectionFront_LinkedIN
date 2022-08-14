@@ -1,0 +1,38 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI-CD-Heroku
+
+env:
+   HEROKU_APP_NAME  : "lcompanies"
+
+# Controls when the workflow will run
+on:
+  push:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Git clone repo
+        uses: actions/checkout@v3
+
+#      - name: Heroku autentification test
+#        run: HEROKU_API_KEY=${{secrets.HEROKU_SECRET_KEY}} heroku run ls -a ${{ env.HEROKU_APP_NAME }}
+        
+      - name: Heroku AUTHENTIFICATION
+        run: docker login --username=_ --password=${{secrets.HEROKU_SECRET_KEY}} registry.heroku.com
+        # run: HEROKU_API_KEY=${{secrets.HEROKU_SECRET_KEY}} heroku container:push web -a ${{ env.HEROKU_APP_NAME }}
+        
+      - name: Heroku BUILD
+        run: docker build -t registry.heroku.com/${{ env.HEROKU_APP_NAME }}/web .
+        #run: HEROKU_API_KEY=${{secrets.HEROKU_SECRET_KEY}} heroku container:release web -a ${{ env.HEROKU_APP_NAME }   
+        
+      - name: Heroku RELEASE
+        run: docker push registry.heroku.com/${{ env.HEROKU_APP_NAME }}/web
+        
