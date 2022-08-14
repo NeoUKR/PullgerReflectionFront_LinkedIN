@@ -22,21 +22,13 @@ jobs:
       - name: Git clone repo
         uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-
-      - name: Heroku autentification test
-        run: HEROKU_API_KEY=${{secrets.HEROKU_SECRET_KEY}} heroku run ls -a ${{ env.HEROKU_APP_NAME }}
+#      - name: Heroku autentification test
+#        run: HEROKU_API_KEY=${{secrets.HEROKU_SECRET_KEY}} heroku run ls -a ${{ env.HEROKU_APP_NAME }}
         
-      - name: Heroku build
-        run: HEROKU_API_KEY=${{secrets.HEROKU_SECRET_KEY}} heroku container:push web -a ${{ env.HEROKU_APP_NAME }}
+      - name: Heroku AUTHENTIFICATION
+        run: docker login --username=_ --password=${{secrets.HEROKU_SECRET_KEY}} registry.heroku.com
+        # run: HEROKU_API_KEY=${{secrets.HEROKU_SECRET_KEY}} heroku container:push web -a ${{ env.HEROKU_APP_NAME }}
         
-      - name: LS
-        run: ls        
+      - name: Heroku BUILD
+        run: docker build -t registry.heroku.com/${{ env.HEROKU_APP_NAME }}/web .
+        #run: HEROKU_API_KEY=${{secrets.HEROKU_SECRET_KEY}} heroku container:release web -a ${{ env.HEROKU_APP_NAME }        
