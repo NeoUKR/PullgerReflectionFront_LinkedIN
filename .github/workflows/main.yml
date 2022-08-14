@@ -32,6 +32,9 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-    
+
       - name: Heroku autentification
-        run: HEROKU_API_KEY='${{secrets.HEROKU_SECRET_KEY}}' heroku run ls -a lcompanies
+        run: HEROKU_API_KEY=${{secrets.HEROKU_SECRET_KEY}} heroku run ls -a lcompanies
+        
+      - name: LS
+        run: ls        
