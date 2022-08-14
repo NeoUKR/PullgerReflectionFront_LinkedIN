@@ -14,9 +14,7 @@ module.exports = withTM({
   swcMinify: false,
   trailingSlash: true,
   env: {
-    TTTT: process.env.TTTT,
-    PORT: process.env.PORT,
-    HOST: process.env.HOST,
+    HOST_API: process.env.HOST_API,
   }  
   // env: {
   //   // HOST

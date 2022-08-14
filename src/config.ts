@@ -39,12 +39,12 @@ export const PATH_AFTER_LOGIN = PATH_DASHBOARD.general.app // as '/dashboard/app
 // export const HOST_API  = PATH_DASHBOARD.general.app
 // export const HOST_API  = 'http://10.0.0.108:8081'
 // export const HOST_API  = `http://localhost:8081`
-export const HOST_API  = `http://${process.env.HOST}:${process.env.PORT}`
+export const HOST_API  = `${process.env.HOST_API}`
 
 
 // export const API_SERVER = 'http://10.0.0.108:3031'
 // export const API_SERVER = 'http://localhost:8081/api/pullgerLinkedIN'
-export const API_SERVER  = `http://${process.env.HOST}:8081/api/pullgerLinkedIN`
+export const API_SERVER  = `${process.env.HOST_API}/api/pullgerLinkedIN`
 
 
 // LAYOUT
