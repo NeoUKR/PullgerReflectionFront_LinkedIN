@@ -37,4 +37,3 @@ jobs:
         
       - name: Heroku RELEASE
         run: docker push registry.heroku.com/${{ env.HEROKU_APP_NAME }}/web
-        
