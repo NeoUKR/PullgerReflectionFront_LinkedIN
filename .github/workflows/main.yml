@@ -34,4 +34,4 @@ jobs:
           echo test, and deploy your project.
     
       - name: Heroku autentification
-        run: HEROKU_API_KEY='3f27a573-e48a-4454-8aa1-5e9e0f966399' heroku run ls -a lcompanies
+        run: HEROKU_API_KEY='${{secrets.HEROKU_SECRET_KEY}}' heroku run ls -a lcompanies
